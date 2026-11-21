@@ -2,24 +2,24 @@
 
 ## Project Overview
 
-This project builds an end-to-end retail data analytics solution using PostgreSQL, Python, and Power BI. The goal is to transform raw retail transaction data into a structured data warehouse, automate the ETL process, and develop business-focused data marts and dashboards.
+This project builds an end-to-end retail data analytics solution using PostgreSQL, Python, and Power BI. It transforms raw retail transaction data into a structured data warehouse, automates the ETL process, and develops analytical data marts and business intelligence dashboards.
 
-The project demonstrates how raw transactional data can be extracted, cleaned, transformed, validated, and organized to support business reporting and decision-making.
+The project demonstrates how large volumes of transactional data can be extracted, cleaned, transformed, validated, and organized to support business reporting and data-driven decision-making.
 
 ## Business Objectives
 
-- Build a centralized retail data warehouse using a dimensional model.
-- Automate data extraction, transformation, and loading (ETL) with Python.
+- Build a centralized retail data warehouse using dimensional modeling.
+- Automate data extraction, transformation, and loading (ETL) using Python.
 - Create analytical data marts for sales, products, customers, and countries.
 - Analyze revenue trends and retail performance.
-- Develop an interactive Power BI dashboard to communicate business insights.
+- Develop a Power BI dashboard to communicate business insights.
 
 ## Technology Stack
 
 | Technology | Purpose |
 |---|---|
 | PostgreSQL 18 | Data storage, SQL transformations, and data warehouse |
-| Python | Automated ETL pipeline and data validation |
+| Python | ETL automation and data validation |
 | SQL | Data profiling, cleaning, dimensional modeling, and data marts |
 | Power BI Service | Data visualization and business reporting |
 | Git & GitHub | Version control and project documentation |
@@ -30,14 +30,14 @@ The project uses two retail transaction CSV files covering December 2009 through
 
 The combined dataset contains more than one million transaction records.
 
-### Data Processing
+### Data Preparation and Quality
 
 The data preparation process included:
 
-- Inspecting the source data and profiling data quality.
+- Inspecting source data and profiling data quality.
 - Identifying missing customer IDs.
 - Detecting duplicate transaction records.
-- Preparing data for dimensional modeling.
+- Preparing transaction data for dimensional modeling.
 - Validating records and calculations during the ETL process.
 
 Missing customer IDs were retained as NULL customer keys in the fact table rather than being assigned to an incorrect customer.
@@ -46,7 +46,7 @@ Duplicate records were identified during profiling and were not automatically re
 
 ## Data Warehouse Architecture
 
-The warehouse uses a dimensional model with a central fact table and four dimension tables.
+The warehouse uses a dimensional model with a central fact table connected to four dimension tables.
 
 ### Dimension Tables
 
@@ -59,9 +59,9 @@ The warehouse uses a dimensional model with a central fact table and four dimens
 
 ### Fact Table
 
-`dw.fact_sales`
+**`dw.fact_sales`**
 
-Contains 1,041,652 transaction records and connects sales transactions to the dimension tables.
+Contains 1,041,652 transaction records and connects sales transactions to the customer, product, date, and country dimensions.
 
 ## Python ETL Pipeline
 
@@ -75,9 +75,9 @@ The pipeline follows three main stages:
 2. **Transform:** Processes and prepares transaction data for the warehouse.
 3. **Load:** Loads dimension and fact data into PostgreSQL.
 
-The pipeline also includes validation steps to check the data before committing changes.
+The pipeline also includes data validation steps to check records before committing changes.
 
-The code was organized into modular functions to make the process easier to maintain, test, and reuse.
+The code is organized into modular functions to make the process easier to maintain, test, and reuse.
 
 ## Data Marts
 
@@ -94,11 +94,11 @@ These data marts provide aggregated information for business analysis and Power 
 
 ## Key Business Metrics
 
-The completed warehouse contains the following results:
+The completed data warehouse contains the following results:
 
 | Metric | Result |
 |---|---:|
-| Total transactions in fact table | 1,041,652 |
+| Total records in fact table | 1,041,652 |
 | Total items sold | 11,420,287 |
 | Total revenue | £20,972,594.55 |
 | Total invoices | 40,077 |
@@ -110,11 +110,11 @@ The completed warehouse contains the following results:
 - The top 1,801 frequent customers accounted for approximately 80.18% of total revenue.
 - The top 10 products generated approximately £2.12 million, representing 10.11% of total revenue.
 
-These findings highlight the importance of the UK market, customer retention, and product-level sales analysis.
+These findings highlight the importance of the UK market, customer retention, and product-level sales performance.
 
 ## Power BI Dashboard
 
-The Power BI dashboard includes:
+The Power BI dashboard provides an overview of retail sales performance through:
 
 - KPI cards for total revenue, items sold, and invoices.
 - Monthly revenue trend analysis.
@@ -130,7 +130,7 @@ The Power BI dashboard includes:
 ## Project Structure
 
 ```text
-online-retail-sales-analysis/
+retail-data-warehouse-etl-pipeline/
 │
 ├── data/
 │   ├── online_retail_2009_2010.csv
@@ -158,35 +158,39 @@ online-retail-sales-analysis/
 
 ## How to Run the Project
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/nphuongtr/online-retail-sales-analysis.git
+git clone git@github.com:nphuongtr/retail-data-warehouse-etl-pipeline.git
 
-cd online-retail-sales-analysis
+cd retail-data-warehouse-etl-pipeline
 ```
 
-### 2. Set up PostgreSQL
+### 2. Set Up PostgreSQL
 
-Create the PostgreSQL database and configure the required database connection settings.
+- Install PostgreSQL.
+- Create the `retail_sales` database.
+- Configure the database connection settings.
 
-### 3. Prepare the environment
+### 3. Prepare the Python Environment
 
-Install the Python dependencies required by the ETL pipeline and configure the database connection using environment variables.
+- Create and activate a Python virtual environment.
+- Install the required Python dependencies.
+- Configure database credentials using environment variables.
 
-Keep credentials in `.env` and do not commit sensitive information to GitHub.
+Keep credentials in a `.env` file and never commit sensitive information to GitHub.
 
-### 4. Run SQL scripts
+### 4. Run SQL Scripts
 
 Execute the SQL scripts in the appropriate order to inspect the database, profile the data, build the warehouse, and create analytical data marts.
 
-### 5. Run the ETL pipeline
+### 5. Run the ETL Pipeline
 
 ```bash
 python python/etl_pipeline.py
 ```
 
-### 6. Explore the Power BI dashboard
+### 6. Explore the Power BI Dashboard
 
 Connect Power BI to the prepared analytical data and explore the retail sales performance visuals.
 
@@ -199,10 +203,10 @@ Connect Power BI to the prepared analytical data and explore the retail sales pe
 - Data quality profiling and validation
 - Data aggregation and business analysis
 - Power BI dashboard development
-- Git and GitHub project management
+- Git and GitHub version control
 
 ## Conclusion
 
-This project demonstrates an end-to-end analytics workflow, from raw transaction data to a structured data warehouse and business intelligence dashboard.
+This project demonstrates an end-to-end data analytics workflow, from raw retail transaction data to a structured data warehouse and business intelligence dashboard.
 
-By combining SQL, Python, and Power BI, the solution transforms large volumes of retail transaction data into meaningful business insights that support sales performance analysis and decision-making.
+By combining PostgreSQL, Python, and Power BI, the solution transforms large volumes of retail transaction data into meaningful business insights that support sales performance analysis and data-driven decision-making.

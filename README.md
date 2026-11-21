@@ -63,6 +63,10 @@ The warehouse uses a dimensional model with a central fact table connected to fo
 
 Contains 1,041,652 transaction records and connects sales transactions to the customer, product, date, and country dimensions.
 
+## Data Dictionary
+
+For detailed documentation of the warehouse schema, column definitions, data types, table relationships, and analytical data marts, see the [Data Dictionary](DATA_DICTIONARY.md).
+
 ## Python ETL Pipeline
 
 The automated ETL pipeline is implemented in:
